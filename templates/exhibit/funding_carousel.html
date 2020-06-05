@@ -1,0 +1,22 @@
+<div class="owl" id="owl-category-{{ category_id }}">
+  {% for exhibit in funding_exhibits %}
+        {% include 'exhibit/funding_box.html' %}
+  {% endfor %}
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $("#owl-category-{{ category_id }}").owlCarousel({
+        lazyLoad : true,
+        navigation : false,
+        rewindNav : true,
+        scrollPerPage : true,
+        pagination : true,
+        items : 8,
+        itemsDesktop : [1344,8],
+        itemsDesktopSmall : [1333,6],
+        itemsTablet: [768,5],
+        itemsMobile : [480,3]
+      });
+    });
+</script>

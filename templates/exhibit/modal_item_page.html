@@ -1,0 +1,142 @@
+{#<div class="modal-dialog" id="item_modal_{{ item.pk }}">#}
+{#  <div class="modal-content">#}
+{#    <div class="modal-header">#}
+{#        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>#}
+{#      <h1 class="modal-title" id="myModalLabel">item snapshot</h1>#}
+{#    </div>#}
+{#    <div class="modal-body ">#}
+{#      <div class="left-bar col-xs-12 col-sm-6 col-md-7 col-lg-7 p0">#}
+{#        <h4>{{ item.name }}</h4>#}
+{#        <p>{{ item.description|safe }}</p>#}
+{#        <div class="thumbnails">#}
+{#          {% for image in item.images.all %}#}
+{#            <a href="javascript:void(0);">#}
+{#              <img src="{{ image.img.url }}"  alt="Thumbnail">#}
+{#            </a>#}
+{#          {% endfor %}#}
+{#        </div>#}
+{#      </div>#}
+{#      <div class="right-bar col-xs-12 col-sm-6 col-md-5 col-lg-5 text-center p0">#}
+{#        <img class="main-image" src="{{ item.image.url }}"  alt="Placeholder" class="placeholder">#}
+{#      </div>#}
+{#      <div class="clearfix"></div>#}
+{#    </div>#}
+{#    <div class="modal-footer">#}
+{#       <a href="{% url 'item_page' item.categories.all.0.slug item.brand.slug item.slug %}" class="pull-left">Go to item page</a>#}
+{#      <button type="button" class="btn btn-black" data-dismiss="modal">close</button>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<script type="text/javascript">#}
+{#    $(document).ready(function() {#}
+{#      $('body').on('click', '.modal-body .thumbnails img', function(){#}
+{#        var src = $(this).attr('src');#}
+{#        $('.modal-body .main-image').attr('src', src);#}
+{#      })#}
+{#    });#}
+{#</script>#}
+
+
+
+{#  <div class="modal-dialog" id="item_modal_{{ item.pk }}">#}
+{#    <div class="modal-content">#}
+{#      <div class="modal-header">#}
+{#        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>#}
+{#        <h1 class="modal-title" id="myModalLabel">#}
+{#          Despicable Me Soft Huggable#}
+{#          <span class="glyphicon glyphicon-star star-blue"></span>#}
+{#        </h1>#}
+{#      </div>#}
+{#      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p0">#}
+{#        <div class="pull-right btn-top">#}
+{#          <a href="/exhibit/toys/Exhibia/despicable-me-soft-huggable/" class="pull-left">Go to item page</a>#}
+{#        </div>#}
+{#      </div>#}
+{#      <div class="clearfix"></div>#}
+{#      <div class="modal-body ">#}
+{#        <div class="left-bar col-xs-12 col-sm-6 col-md-7 col-lg-7 p0">#}
+{#          <!--<div class="block">-->#}
+{#            <!--<h6>Despicable Me Soft Huggable</h6>-->#}
+{#            <!--<div class="price">$400.00</div>-->#}
+{#          <!--</div>-->#}
+{#          <div class="item-title">#}
+{#            <h6>Shipping Method</h6>#}
+{#          </div>#}
+{#          <!-- radio-button shipping method -->#}
+{#          <div class="radio">#}
+{#            <label><input checked="checked" name="shipping_method" type="radio" value="standard"> Standard shipping $9.00</label>#}
+{#          </div>#}
+{#          <div class="radio">#}
+{#            <label><input name="shipping_method" type="radio" value="priority"> Priority shipping $20.00</label>#}
+{#          </div>#}
+{#          <div><label for="id_shipping_method" class="error"></label></div>#}
+{#          <!-- end radio-button shipping method -->#}
+{##}
+{#        </div>#}
+{#        <div class="right-bar col-xs-12 col-sm-6 col-md-5 col-lg-5 text-center p0">#}
+{#          <img class="main-image" src="{{ item.image.url }}" alt="Placeholder">#}
+{#        </div>#}
+{#        <div class="clearfix"></div>#}
+{#        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p0">#}
+{#          <div class="item-title mt-30">#}
+{#            <h6>Order Summary</h6>#}
+{#          </div>#}
+{#          <div class="order-info">#}
+{#            <table>#}
+{#              <tbody>#}
+{#              <tr>#}
+{#                <td>Retail:</td>#}
+{#                <td>$<span id="buy-now-price">400.00</span></td>#}
+{#              </tr>#}
+{#              </tbody>#}
+{#            </table>#}
+{#            <div class="border-b"></div>#}
+{#            <table>#}
+{#              <tbody>#}
+{#              <tr>#}
+{#                <td>Shipping &amp; handling:</td>#}
+{#                <td>$<span id="shipping-price">9</span></td>#}
+{#              </tr>#}
+{#              </tbody>#}
+{#            </table>#}
+{##}
+{#            <div><label for="" class="error"></label></div>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="clearfix"></div>#}
+{#      </div>#}
+{#      <div class="modal-footer">#}
+{#        <!--total sum-->#}
+{#        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p0">#}
+{#          <div class="pull-left">#}
+{#            <div class="total-sum">#}
+{#              Total: $<span id="buy-now-total-sum">409</span>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="pull-right">#}
+{#              <button type="button" id="buy-now" class="btn btn-info ajax-submit" data-ajax-disable="1">#}
+{#                <div class="item-loader">#}
+{#                <span class="loader">#}
+{#                  <img src="/static/img/loader.gif">#}
+{#                </span>#}
+{#                </div>#}
+{#                Place Your Order#}
+{#              </button>#}
+{#              <button type="button" class="btn btn-black" data-dismiss="modal">close</button>#}
+{#          </div>#}
+{#          <div class="clearfix"></div>#}
+{#        </div>#}
+{#        <div class="clearfix"></div>#}
+{##}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <script type="text/javascript">#}
+{#    $(document).ready(function() {#}
+{#      $('body').on('click', '.modal-body .thumbnails img', function(){#}
+{#        var src = $(this).attr('src');#}
+{#        $('.modal-body .main-image').attr('src', src);#}
+{#      })#}
+{#    });#}
+{#  </script>#}

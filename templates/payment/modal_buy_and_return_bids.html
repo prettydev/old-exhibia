@@ -1,0 +1,113 @@
+  <div class="modal-dialog" id="modal_return_bids_{{ exhibit.item.pk }}">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h1 class="modal-title" id="myModalLabel">Get your {{ exhibit.bid_refund }} bid(s) back</h1>
+      </div>
+      <form role="form" target="_parent" id="buy-and-return-bids-form" method="POST" action="{% url 'buy_and_return_bids' %}">{% csrf_token %}
+        {{ form.exhibit }}
+        <div class="modal-body ">
+      <!-- form -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="block">
+                  <h6>{{ exhibit.item.name }}</h6>
+                  <div class="price">${{ exhibit.item.price }}</div>
+                </div>
+                <div class="form-group">
+                  <label for="addr">Payment system</label>
+                  {% for choice in form.payment_method %}
+                    <div class="radio">
+                      {{ choice }}
+                    </div>
+                  {% endfor %}
+                  <div><label for="{{ form.payment_method.auto_id }}" class="error"></label></div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="">
+                  <div class="foto-pr ">
+                    <img class="img-responsive" src="{{ exhibit.item.image.url }}"/>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="">
+                  <div class="item-title">
+                    <h6>Shipping Method</h6>
+                  </div>
+
+                  <!-- radio-button shipping method -->
+                  {% for choice in form.shipping_method %}
+                    <div class="radio">
+                      {{ choice }}
+                    </div>
+                  {% endfor %}
+                  <div><label for="{{ form.shipping_method.auto_id }}" class="error"></label></div>
+                  <!-- end radio-button shipping method -->
+
+                  <div class="item-title mt-30">
+                    <h6>Order Summary</h6>
+                  </div>
+                  <div class="order-info">
+                    <table>
+                      <tbody>
+                        <tr>
+                            <td>Retail:</td>
+                            <td>$<span id="buy-now-price">{{ exhibit.item.price }}</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="border-b"></div>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>Shipping & handling:</td>
+                          <td>$<span id="shipping-price">{{ exhibit.item.standard_shipping_price }}</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    {{ form.auction }}
+                    <div><label for="{{ form.auction.auto_id }}" class="error"></label></div>
+                    <div class="total-sum">
+                      Total: $<span id="buy-now-total-sum" >{{ exhibit.item.price|add:exhibit.item.standard_shipping_price }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              </div>
+            <div class="clearfix"></div>
+      <!-- end form -->
+        </div>
+          <div class="modal-footer">
+
+            <button type="button" id="buy-and-return-bids" class="btn btn-info ajax-submit" data-ajax-disable="1">
+              <div class="item-loader">
+                <span class="loader">
+                  <img src="{{ STATIC_URL }}img/loader.gif"/>
+                </span>
+              </div>
+              Place Your Order
+            </button>
+            <button type="button" class="btn btn-black" data-dismiss="modal">Cancel</button>
+          </div>
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      $('#buy-and-return-bids-form').on('change', 'input[name="shipping_method"]', function() {
+        // make it normal
+        var shipping_price = Number($(this).parent().text().replace(/[^0-9\.]+/g,""));
+        var buy_now_price = $('#buy-now-price').text();
+        $('#shipping-price').text(shipping_price);
+        $('#buy-now-total-sum').text(+shipping_price.toFixed(2) + +buy_now_price);
+      })
+    });
+
+  </script>

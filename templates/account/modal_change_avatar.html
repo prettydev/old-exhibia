@@ -1,0 +1,61 @@
+{% load widget_tweaks %}
+{% load i18n static %}
+
+<div class="modal-dialog">
+    <div class="modal-content" style="max-width: 313px">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h1 class="modal-title" >{% trans 'Change avatar' %}</h1>
+      </div>
+        <!--<p>Current avatar:</p>-->
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="foto">
+            <img id="user-avatar" src="{{ MEDIA_URL }}{{ user.avatar }}" width="200" height="200">
+{#            <img id="user-avatar" src="/static/img/user-no-image.jpg" width="150" height="150">#}
+          </div>
+        </div>
+
+        <form action="{% url 'user_avatar_change' %}" id="user-change-avatar-form" class="validation" method="POST">{% csrf_token %}
+        <div class="clearfix"></div>
+        <div class="btn-reg col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group mt-20">
+
+              <br />
+                <div id="avatar-uploader"></div>
+                <button type="button" id="user-change-avatar" class="btn btn-info ajax-submit ">
+                 Save
+                </button>
+                <button type="button" id="remove-user-avatar" class="btn btn-info btn-danger">
+                 Reset to default
+                </button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+<script type="text/javascript">
+    /* fineUploader for user avatar */
+    $('#avatar-uploader').fineUploader(avatarFineUploaderSettings)
+        .on('complete', function (event, id, fileName, responseJSON) {
+            if (responseJSON.success) {
+                // view new image instead of old one
+                $('#user-avatar').attr('src', '/media/temp/' + responseJSON.uploadName);
+                // delete button
+                $('#delete_logo').remove();
+                // form field
+                $('#id_img').val(responseJSON.uploadName);
+            }
+        }).on('submitDelete', function (event, id) {
+            var filename = $('#id_img').val();
+            $(this).fineUploader('setDeleteFileParams', {filename: filename}, id);
+            $('#user-avatar').attr('src', "{{ MEDIA_URL }}{{ user.avatar }}");
+        });
+</script>

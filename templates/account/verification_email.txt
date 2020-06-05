@@ -1,0 +1,1 @@
+Verify your E-mail on {{ site }} by this link <a href="http://{{ site }}{{ link }}">http://{{ site }}{{ link }}</a>

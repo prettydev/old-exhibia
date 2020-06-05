@@ -1,0 +1,54 @@
+<div class="itemFund col-lg-12" id="funding_{{ exhibit.pk }}">
+  <div class="thumbnail">
+    <div class="item-name">
+      <h6>{{ exhibit.item.name }}</h6>
+    </div>
+    <div class="item-foto">
+      <a class="itemLink btn-buy-now" data-item_pk="{{ exhibit.item.pk }}" style="background-image: url({{ exhibit.item.image.url }});
+{#      <a class="itemLink" data-toggle="modal" data-target="#ModalFund" data-pk="{{ exhibit.pk }}" style="background-image: url({{ exhibit.item.image.url }});#}
+      {% if exhibit.item.image.width > exhibit.item.image.height %}
+      background-size:100% auto ;
+     {% else %}
+      background-size: auto 100%;
+     {% endif %}
+
+      "></a>
+    </div>
+    <div class="alert alert-info">
+      <table>
+          <tbody>
+            <tr>
+              <td>
+                <button class="addToWishList" type="btn" data-toggle="modal" data-itempk="{{ exhibit.item.pk }}" data-target="#ModalWishList">
+                    <span class="glyphicon glyphicon-star star-blue"></span>
+                </button>
+              </td>
+              <td rowspan="2" class="percent" style="{% if not exhibit.backers_count %}display: none;{% endif %}"><span class="funded">{{ exhibit.percent_funded|floatformat:0 }}</span>%</td>
+            </tr>
+            <tr>
+              {% if exhibit.backers_count %}
+                <td><strong class="bakers">{{ exhibit.backers_count }}</strong><span class="text-blue">backers</span></td>
+              {% else %}
+                <td>
+                    <strong class="bakers"></strong>
+                    <span class="text-blue backers-text-message" style="display: none;">backers</span>
+                    <span class="text-blue start-message">Get bids</span>
+                </td>
+              {% endif %}
+            </tr>
+          </tbody>
+      </table>
+      <!-- progress-bar -->
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" 
+             style="width: {{ exhibit.percent_funded|floatformat:0 }}%;">
+          <span class="sr-only">{{ exhibit.percent_funded|floatformat:0 }}% Complete</span>
+        </div>
+      </div>
+      <!-- end progress-bar -->
+    </div>
+    <div class="modal-btn">
+        {% include 'exhibit/fund_button.html' %}
+    </div>
+  </div>
+</div>

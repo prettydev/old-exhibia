@@ -1,0 +1,354 @@
+[
+{
+ "pk": 250, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "waiting_payment", 
+  "locked": false, 
+  "last_bidder_name": "admin", 
+  "ended_unixtime": 1404395822.30569, 
+  "last_bidder_member": 1, 
+  "item": "50inchandroid", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 251, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "depicableme", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 252, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "exhibiablack", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 253, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "exhibiapursered", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 254, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "Playstation4", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 255, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "starbucks10", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 256, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "macmini", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 258, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "iphone-5-white", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 259, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "koss-porta-pro", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 260, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "wndowshtcphone", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 261, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "samsungmega", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 262, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "samsunggalaxys", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 264, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "lenovop780", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 266, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "iphone5", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 268, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "iphone-4gs-black", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 269, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "exhibiaphone", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 270, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "exhibianote3", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 271, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "amazonphone", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 274, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "bicycle", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 276, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "samsung-tv-32", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 277, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "coffee-mill", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+},
+{
+ "pk": 278, 
+ "model": "exhibit.exhibit", 
+ "fields": {
+  "status": "bidding", 
+  "locked": false, 
+  "last_bidder_name": "", 
+  "ended_unixtime": null, 
+  "last_bidder_member": null, 
+  "item": "coffe-mill-vitek", 
+  "backers_count": 0, 
+  "funded_unixtime": null, 
+  "amount_funded": 0, 
+  "in_queue": false
+ }
+}
+]

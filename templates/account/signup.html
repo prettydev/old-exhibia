@@ -1,0 +1,19 @@
+<div class="modal fade" id="ModalSignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="myModalLabel">sign up</h1>
+      </div>
+      <div class="modal-body loginbtns">
+        <a target="_parent" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" class="btn btn-blue icon-social icon-fb border-left-fb">Sign up with Facebook</a>
+        <a target="_parent" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="btn btn-google icon-social icon-google">Sign up with Google</a>
+        <a href="{% url 'login' %}" class="text-center link">or sign up with <span>email</span></a>
+        <p></p>
+          <small>Disclaimer: User must make either Facebook or Google association before they are able to bid</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-black" data-dismiss="modal">close</button>
+      </div>
+    </div>
+  </div>
+</div>

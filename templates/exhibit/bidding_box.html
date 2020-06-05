@@ -1,0 +1,90 @@
+{% load exhibit_tags %}
+<div class="col-xs-6 col-sm-2 col-md-3 col-lg-2 w-193" id="bidding_{{ exhibit.id }}">
+    <div class="thumbnail">
+      <div class="item-foto">
+        <a class="itemLink btn-buy-now" data-item_pk="{{ exhibit.item.pk }}"
+          style="background-image: url({{ exhibit.item.image.url }});
+           {% if exhibit.item.image.width > exhibit.item.image.height %}
+            background-size:100% auto ;
+           {% else %}
+            background-size: auto 100%;
+           {% endif %}
+          ">
+        </a>
+      </div>
+      <div class="item-name">
+        <a>{{ exhibit.item.name }}</a>
+      </div>
+      <div class="caption">
+        <div class="item-bid">
+          <table>
+            <tbody>
+              <tr>
+                <td colspan="2">
+                    {% if exhibit.is_relisted %}
+                    {% elif exhibit.ended_unixtime or exhibit.is_auto_paused_last %}
+                        <div class="wrapper-foto popover-wrapper-foto"  id="bidding_wrapper_foto_{{ exhibit.id }}" data-trigger="hover"
+                             data-container="body" data-toggle="popover" data-html="true" data-placement="right" data-user-id="{{ exhibit.last_bidder_member.id }}"
+                             data-content="">
+                            <img class="item-bidder-foto" id="bidding_foto_{{ exhibit.id }}" src="{{ MEDIA_URL }}{{ exhibit.last_bidder_member.avatar }}">
+                        </div>
+                    {% else %}
+                        <div class="wrapper-foto popover-wrapper-foto" id="bidding_wrapper_foto_{{ exhibit.id }}" style="display:none;" data-trigger="hover"
+                             data-container="body" data-toggle="popover" data-html="true" data-placement="right" data-user-id=""
+                             data-content="">
+                            <img class="item-bidder-foto" src="" id="bidding_foto_{{ exhibit.id }}">
+                        </div>
+                    {% endif %}
+                    {% if not exhibit.is_relisted %}
+                      <div class="item-last-bidder" id="bidding_name_{{ exhibit.id }}">
+                        {{ exhibit.last_bidder_name }}
+                      </div>
+                    {% endif %}
+                    {# admin timer drop tool #}
+                    {% if user.is_superuser %}
+                        {% include 'exhibit/timer_drop_tool.html' %}
+                    {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2"><div class="item-timer">timer: <span>{{ exhibit.bidding_time }} sec</span></div></td>
+              </tr>
+              <tr>
+                <td>
+                  {% if exhibit.is_relisted %}
+                    <div id="bidding_winner_{{ exhibit.id }}" class="time">Relisted</div>
+                  {% else %}
+                    <div id="bidding_winner_{{ exhibit.id }}" class="time" style="{% if not exhibit.in_after_win_pause %}display:none;{% endif %}">Winner!</div>
+                  {% endif %}
+                  
+                  {% if exhibit.is_auto_paused_last %}
+                    <div id="bidding_timer_{{ exhibit.id }}" class="time bidding-timer">Gone</div>
+                  {% else %}
+                    <div id="bidding_timer_{{ exhibit.id }}" class="time bidding-timer" style="{% if not exhibit.ended_unixtime or exhibit.in_after_win_pause or exhibit.is_auto_paused_last  or exhibit.is_relisted %}display:none;{% endif %}"> -- : -- </div>
+                  {% endif %}
+                  {% if not exhibit.ended_unixtime %}
+                    {% if not exhibit.is_auto_paused_last %}
+                      <div id="bidding_start_msg_{{ exhibit.id }}" class="color-blue start-message">Be the first bidder</div>
+                    {% endif %}
+                  {% endif %}
+                </td>
+                <td>
+                  {% bid_button exhibit %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="item-buy">
+          <table>
+            <tr>
+              <td>Retail ${{ exhibit.item.price }}</td>
+              <td>
+                  <button data-item_pk="{{ exhibit.item.pk }}" class="btn btn-buy btn-buy-now pull-right">вuy</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>

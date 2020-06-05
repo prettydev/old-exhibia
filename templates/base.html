@@ -1,0 +1,409 @@
+{% load exhibit_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# exhibia: http://ogp.me/ns/fb/exhibia#">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{% block title %}Exhibía® Shopping - FB or G+ account required to participate{% endblock title %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}img/favicon.ico">
+    <meta name="description" content="Google or Facebook account required to bid. This serves to verify that every bid comes from a real live person and never from automated computer software aka. BOTS.">
+		{% block extra_meta %}{% endblock %}
+    {% block stylesheets_head %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/fontello.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/animation.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/owl.carousel.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/owl.theme.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/alertify.core.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/alertify.default.css" />
+
+    {% endblock stylesheets_head %}
+
+    {% block javascripts_head %}
+
+        <script>
+          (function() {
+            window.WEBSOCKET_ADDRESS = "{{  WEBSOCKET_ADDRESS }}";
+          })();
+        </script>
+
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-scrollto.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.form.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/exhibia.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/application.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/websocket.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/exhibit.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/rotate3Di.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/alertify.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/fineuploader.settings.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fineuploader-4.1.0-13.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/google.analytics.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/facebook.tracking.pixel.js"></script>
+							
+
+        <!-- template for adding user avatar-->
+        <script type="text/template" id="qq-avatar-template">
+          <div class="row image-uploader qq-uploader-selector qq-uploader">
+            <div class="qq-upload-list-selector qq-upload-list">
+              <div class="new">
+                <input class="qq-edit-filename-selector qq-edit-filename filename" name="img" id="id_img" tabindex="0" type="hidden" />
+{#                <a class="qq-upload-delete-selector qq-upload-delete delete-image btn btn-default" href="javascript:void(0);">Delete</a>#}
+{#                <button type="button" class="close" >×</button>#}
+{#                  <button class="qq-upload-delete-selector qq-upload-delete delete-image btn btn-default close" href="javascript:void(0);">x</button>#}
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary file-upload qq-upload-button-selector qq-upload-button " data-id="id_img ">Upload</button>
+          </div>
+        </script>
+        <!-- END template for adding user avatar-->
+        <script type="text/javascript">
+
+        (function(d){
+            var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            d.getElementsByTagName('head')[0].appendChild(js);
+          }(document));
+
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '129299757101755',
+                    cookie: true,
+                    status:true,
+                    xfbml: true,
+                    oauth: true
+                });
+            };
+
+            function FacebookInviteFriends()
+            {
+                FB.ui({
+                    title : 'Exhibia - Competitive social shopping',
+                    method: 'apprequests',
+                    message: 'Join www.exhibia.com'
+                });
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="{{ STATIC_URL }}js/html5shiv.js"></script>
+        <script src="{{ STATIC_URL }}js/respond.min.js"></script>
+        <![endif]-->
+
+        {% if messages %}
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    {% for message in messages %}
+                        var level = {{ message.level }};
+                        if(level == 999) {
+                            display_profile_message("{{ message }}");
+                        }
+                        else {
+                            display_flash_message("{{ message }}", "{{ message.tags }}");
+                        }
+                    {% endfor %}
+                });
+            </script>
+        {% endif %}
+    {% endblock javascripts_head %}
+  </head>
+
+  <body>
+{#    <div id="fb-root"></div>#}
+{#    <script>(function(d, s, id) {#}
+{#        var js, fjs = d.getElementsByTagName(s)[0];#}
+{#        if (d.getElementById(id)) return;#}
+{#        js = d.createElement(s); js.id = id;#}
+{#        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=129299757101755&version=v2.0";#}
+{#        fjs.parentNode.insertBefore(js, fjs);#}
+{#        }(document, 'script', 'facebook-jssdk'));#}
+{#    </script>#}
+{#    <script>#}
+{#    window.fbAsyncInit = function () {#}
+{#        FB.init({#}
+{#            appId: '129299757101755',#}
+{#            status: false,#}
+{#            cookie: false,#}
+{#            xfbml: true#}
+{#        });#}
+{##}
+{#        //Additional#}
+{#        FB.Event.subscribe('edge.create',#}
+{#                function (response) {#}
+{#                    console.log(response);#}
+{#                    // set 100 bids if user like it at the first time#}
+{#                }#}
+{#            );#}
+{#        };#}
+{##}
+{#        // Asynchronously#}
+{#        (function (d) {#}
+{#            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];#}
+{#            if (d.getElementById(id)) { return; }#}
+{#            js = d.createElement('script'); js.id = id; js.async = true;#}
+{#            js.src = "//connect.facebook.net/en_US/all.js";#}
+{#            ref.parentNode.insertBefore(js, ref);#}
+{#        } (document));#}
+{##}
+{#    </script>#}
+    <!-- header -->
+    <header>
+     <div class="container w-1300 header">
+       <div class="row">
+         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <nav class="navbar " role="navigation">
+             <div class="navbar-header">
+               <a class="navbar-brand" href="{% url 'home' %}"><img class="img-responsive" src="{{ STATIC_URL }}img/logo.png" /></a>
+               <!--<button type="button" class="navbar-toggle" data-toggle="collapse"-->
+                       <!--data-target="#bs-example-navbar-collapse-1">-->
+                 <!--<span class="sr-only">Toggle navigation</span>-->
+                 <!--<span class="icon-bar"></span>-->
+                 <!--<span class="icon-bar"></span>-->
+                 <!--<span class="icon-bar"></span>-->
+               <!--</button>-->
+             </div>
+             <!--  <div class="">
+                <form class="navbar-form navbar-left" role="search">
+                  <div class="form-group has-feedback">
+                    <input type="text" class="form-control form-search" placeholder="search">
+                    <span class="glyphicon glyphicon-search  form-control-feedback"></span>
+                  </div>
+                </form>
+              </div> -->
+             <div class="navbar-right item-navbar">
+               <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+                 <!--<ul class="nav navbar-nav">-->
+                   <!--<li><a href="#">how it works</a></li>-->
+                   <!--<li><a href="">faq</a></li>-->
+                 <!--</ul>-->
+               <!--</div>-->
+               <ul class="list-unstyled registr-btn">
+                 {% if user.is_authenticated %}
+                   <li>
+                     <a class="logout" href="{% url 'social_logout' %}">Logout</a>
+                   </li>
+                 {% else %}
+                   <li>
+                     <a target="_parent" href="{% url 'social:begin' 'facebook' %}" class="btn link signIn blue fb">Sign In with Facebook</a>
+                   </li>
+                   <li>
+                     <a target="_parent" href="{% url 'social:begin' 'google-oauth2' %}" class="btn link signIn red go">Sign In with Google+</a>
+                   </li>
+{#                   <li>#}
+{#                     <a href="{% url 'login' %}" class="btn btn-danger login">Login with nickname</a>#}
+{#                   </li>#}
+                 {% endif %}
+               </ul>
+             </div>
+             <div class="clearfix"></div>
+             <!-- <ul class="nav navbar-nav navbar-right">
+                <li>
+                   <button class="btn btn-danger" data-toggle="modal" data-target="#ModalSignIn">sign up</button>
+                 </li>
+                 <li>
+                   <button type="button " class="btn btn-danger">login</button>
+                 </li>
+             </ul> -->
+           </nav>
+         </div>
+         <div class="clearfix"></div>
+       </div>
+     </div>
+     <div class="green-line"></div>
+     <div class="red-line"></div>
+{#    {% if messages %}#}
+{#        <script>#}
+{#        $(document).ready#}
+{#        {% for message in messages %}#}
+{#            alertify.success("{{ messages }}"");#}
+{#        {% endfor %}#}
+{#        </script>#}
+{#    {% endif %}#}
+
+
+    </header>
+    <!-- end header -->
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- footer -->
+    <footer>
+     <div class="footer">
+       <div class="container w-960">
+         <div class="row">
+          <div class="menu">
+             <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+               <h4>our company</h4>
+               <ul class="list-unstyled">
+                 <li>
+                   <a href="https://www.exhibia.com/faq/">About Us</a>
+                 </li>
+                 <li>
+                   <a href="https://www.exhibia.com/faq/">FAQ’s</a>
+                 </li>
+                 <li>
+                   <a href="https://www.exhibia.com/contact/">Contact Us</a>
+                 </li>
+                 <li>
+                   <a href="https://www.exhibia.com/privacy/">Privacy Policy</a>
+                 </li>
+		<li>
+                   <a href="http://ww1.prweb.com/prfiles/2014/11/09/12313088/googleinterestinexhibia.pdf">Google To Exhibia</a>
+                 </li>
+		 <li>
+                   <a href="http://www.prweb.com/releases/2014/11/prweb12313088.htm">Press Release December 1, 2014</a>
+                 </li>
+
+
+               </ul>
+             </div>
+             <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+               <h4>customer service</h4>
+               <ul class="list-unstyled">
+                 <li>
+                   <a href="https://www.exhibia.com/faq/">How It Works</a>
+                 </li>
+                 <li>
+                   <a href="https://www.exhibia.com/faq/">Bidding</a>
+                 </li>
+                 <li>
+                   <a href="https://www.exhibia.com/shipping/">Shipping & Delivery</a>
+                 </li>
+                 <li>
+                   <a href="https://www.exhibia.com/returns/">Returns & Exchanges</a>
+                 </li>
+		   <li>
+                   <a href="">Payment Methods & Security</a>
+                 </li>
+                 <li>
+                   <a href="">Technical Information</a>
+                 </li>
+                 <li>
+                   <a href="">Blog</a>
+                 </li>
+               </ul>
+             </div>
+             <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+               <h4>intellectual property</h4>
+               <ul class="list-unstyled">
+                 <li>
+                   <a href="https://www.google.com/patents/US20130262257">Patent US20130262257</a>
+                 </li>
+                 <li>
+                   <a href="https://www.google.com/patents/WO2013140278A1">Patent WO2013140278A1</a>
+                 </li>
+                 <li>
+                   <a href="https://drive.google.com/file/d/0BzKGbOKjm5mOU2F1ZnlUX1lTa0k/edit?usp=sharing">Copyright Visuals</a>
+                 </li>
+		 <li>
+                   <a href="https://drive.google.com/file/d/0BzKGbOKjm5mOWC05NnRPd0kzbVU/edit?usp=sharing">Copyright Videos</a>
+                 </li>
+
+               </ul>
+             </div>
+             <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+               <h4>connect with us</h4>
+               <ul class="list-unstyled icon-circle">
+                  <li>
+                    <a target="_parent" href="{% url 'social:begin' 'facebook' %}"><i class="icon-facebook-circled"></i></a>
+                  </li>
+                  <li>
+{#                     <a href=""><i class="icon-twitter-circled"></i></a>#}
+                  </li>
+               </ul>
+             </div>
+             <div class="clearfix"></div>
+          </div>
+         </div>
+         <div class="row">
+           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+             <div class="copyright">
+               <div class="text-center">&copy; 2014  Social Shopping Network</div>
+             </div>
+           </div>
+           <div class="clearfix"></div>
+         </div>
+       </div>
+     </div>
+    </footer>
+    <!-- end footer -->
+
+
+    <!-- ModalSignIn -->
+    {% include "account/signup.html" %}
+    <!-- END  ModalSignIn-->
+
+    {% if user.is_authenticated %}
+      <!-- MODAL fUNDiTEMS -->
+      {% include "payment/modal_funding.html" %}
+      <!-- END MODAL fUNDiTEMS -->
+    {% endif %}
+    <!-- modalWishList -->
+    <div class="modal fade" id="ModalWishList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    </div>
+    <!-- end modalWishList -->
+
+    <!-- ModalItemPage -->
+    <div class="modal fade" id="ModalItemPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    </div>
+    <!-- END ModalItemPage -->
+
+    <!-- ModalBuyNow -->
+    <div class="modal fade" id="ModalBuyNow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    </div>
+    <!-- END ModalBuyNow -->
+
+    <!-- ModalChangePassword -->
+    <div class="modal fade" id="ModalChangePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    </div>
+    <!-- END ModalChangePassword -->
+
+    <!-- ModalVerify -->
+    <div class="modal fade" id="ModalVerify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    </div>
+    <!-- END ModalVerify -->
+
+    <!-- ModalChangeAvatar -->
+    <div class="modal fade" id="ModalChangeAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    </div>
+    <!-- END ModalChangeAvatar -->
+
+    <!-- ModalModalBuyShipping -->
+    <div class="modal fade" id="ModalBuyShipping" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    </div>
+    <!-- END ModalBuyShipping -->
+
+    <!-- ModalModalReturnBids -->
+    <div class="modal fade" id="ModalReturnBids" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    </div>
+    <!-- END ModalModalReturnBids -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% block extra_js %}
+{#        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.easing.1.3.js"></script>#}
+{#        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.quicksand.js"></script>#}
+{#        <!--<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>-->#}
+{#        <script type="text/javascript" src="{{ STATIC_URL }}js/facebook.js"></script>#}
+{#        <script type="text/javascript" src="{{ STATIC_URL }}js/gplus.js"></script>#}
+    {% endblock extra_js %}
+
+    {% block extra_body %}
+    {% endblock extra_body %}
+
+  </body>
+</html>

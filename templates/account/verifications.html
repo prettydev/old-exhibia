@@ -1,0 +1,15 @@
+{% if user.is_facebook_verified  %}
+    <img src='{{STATIC_URL }}img/fb-ico.jpg' width='20' height='20' />
+{% endif %}
+
+{% if user.is_google_verified  %}
+    <img src='{{ STATIC_URL }}img/go-ico.png' width='20' height='20' />
+{% endif %}
+
+{#{% if user.is_email_verified  %}#}
+{#    <img src='{{ STATIC_URL }}img/email-ico.jpg' width='20' height='20' />#}
+{#{% endif %}#}
+{##}
+{#{% if user.is_phone_verified  %}#}
+{#    <img src='{{ STATIC_URL }}img/phone-ico.jpg' width='20' height='20' />#}
+{#{% endif %}#}

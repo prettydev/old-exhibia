@@ -1,0 +1,108 @@
+<div class="modal-dialog" id="modal_buy_now_{{ item.pk }}">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h1 class="modal-title" id="myModalLabel">
+          {{ item.name }}
+          <button class="addToWishList" type="btn" data-toggle="modal" data-itempk="{{ item.pk }}" data-target="#ModalWishList">
+            <span class="glyphicon glyphicon-star star-blue"></span>
+          </button>
+        </h1>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p0">
+        <div class="pull-right btn-top">
+          <a href="{% url 'item_page' item.categories.all.0.slug item.brand.slug item.slug %}" class="pull-left">Go to item page</a>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <form role="form" target="_parent" id="buy-now-form" method="POST" action="{% url 'buy_now' %}">{% csrf_token %}
+        {{ form.item }}
+        {{ form.payment_method }}
+      <div class="modal-body ">
+        <div class="left-bar col-xs-12 col-sm-6 col-md-7 col-lg-7 p0">
+          <p>{{ item.description|safe }}</p>
+          <!--<div class="block">-->
+            <!--<h6>Despicable Me Soft Huggable</h6>-->
+            <!--<div class="price">$400.00</div>-->
+          <!--</div>-->
+          <div class="item-title">
+            <h6>Shipping Method</h6>
+          </div>
+          <!-- radio-button shipping method -->
+          {% for choice in form.shipping_method %}
+            <div class="radio">
+              {{ choice }}
+            </div>
+          {% endfor %}
+          <div><label for="id_shipping_method" class="error"></label></div>
+          <!-- end radio-button shipping method -->
+        </div>
+        <div class="right-bar col-xs-12 col-sm-6 col-md-5 col-lg-5 text-center p0">
+          <img class="main-image" src="{{ item.image.url }}" alt="Placeholder">
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p0">
+          <div class="item-title mt-30">
+            <h6>Order Summary</h6>
+          </div>
+          <div class="order-info">
+            <table>
+              <tbody>
+              <tr>
+                <td>Retail:</td>
+                <td>$<span id="buy-now-price">{{ item.price }}</span></td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="border-b"></div>
+            <table>
+              <tbody>
+              <tr>
+                <td>Shipping &amp; handling:</td>
+                <td>$<span id="shipping-price">{{ item.standard_shipping_price }}</span></td>
+              </tr>
+              </tbody>
+            </table>
+            <div><label for="" class="error"></label></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-footer">
+        <!--total sum-->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p0">
+          <div class="pull-left">
+            <div class="total-sum">
+              Total: $<span id="buy-now-total-sum">{{ item.price|add:item.standard_shipping_price }}</span>
+            </div>
+          </div>
+          <div class="pull-right">
+              <button type="button" id="buy-now" class="btn btn-info ajax-submit" data-ajax-disable="1">
+                <div class="item-loader">
+                <span class="loader">
+                  <img src="{{ STATIC_URL }}img/loader.gif">
+                </span>
+                </div>
+                Place Your Order
+              </button>
+              <button type="button" class="btn btn-black" data-dismiss="modal">close</button>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      </form>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#buy-now-form').on('change', 'input[name="shipping_method"]', function() {
+      // make it normal
+      var shipping_price = Number($(this).parent().text().replace(/[^0-9\.]+/g,""));
+      var buy_now_price = $('#buy-now-price').text();
+      $('#shipping-price').text(shipping_price);
+      $('#buy-now-total-sum').text(+shipping_price.toFixed(2) + +buy_now_price);
+    })
+  });
+</script>

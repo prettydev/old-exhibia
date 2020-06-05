@@ -1,0 +1,36 @@
+<table class="table">
+   <thead>
+      <tr class="active">
+         <th class="col-first">
+            <div class="top-header">Won Item</div>
+            {{ exhibit.won_date|date:"F d, Y" }}
+         </th>
+         <th class="col-second"></th>
+         <th></th>
+         <th></th>
+         <th></th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td class="col-first">
+            <div class="wrap-foto">
+               <a href="" class="itemFoto" style="background-image: url({{ exhibit.item.image.url }}); background-size: auto 100%;"></a>
+            </div>
+         </td>
+         <td class="col-second">
+            <div class="table-header">
+               {{ exhibit.item.name }}
+            </div>
+{#            <div class="table-header"><span class="grey-text">Sold by: </span>...</div>#}
+         </td>
+         <td></td>
+         <td></td>
+         <td>
+             <div><button  data-exhibit_id="{{ exhibit.id }}" class="btn red btn-buy-shipping">Pay Shipping</button></div>
+{#            <div><button  data-exhibit_id="{{ exhibit.id }}" class="btn red btn-buy-shipping">Pay Priority Shipping ${{ exhibit.item.priority_shipping_price }}</button></div>#}
+{#            <div><button class="btn btn-primary">Pay Shipping ${{ exhibit.item.standard_shipping_price }}</button></div>#}
+         </td>
+      </tr>
+   </tbody>
+</table>

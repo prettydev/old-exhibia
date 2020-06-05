@@ -1,0 +1,37 @@
+{% load widget_tweaks %}
+{% load i18n static %}
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" >added to wishlist</h1>
+      </div>
+      <form action="{% url 'update_item_wishlist' %}" method="POST" id="item-wishlist-form">
+          {% csrf_token %}
+          <input name="item_pk" type="hidden" value="{{ item_pk }}">
+          <div class="modal-body">
+            <h6>How would you like to be notified when wishlist item has funded?</h6>
+            {% for type in types %}
+                <div class="checkbox">
+                    <label>
+                      <input name="types" type="checkbox" value="{{ type.0 }}" {% if type.0 in choosen %}checked="checked"{% endif %}>
+                      <div><span class="list list-{{ type.0 }}"></span>{{ type.1 }}</div>
+                    </label>
+                </div>
+            {% endfor %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-black" data-dismiss="modal">close</button>
+            <button type="button" id="item-wishlist" class="btn btn-info ajax-submit">
+              <div class="item-loader">
+                <span class="loader" style="display: none;">
+                  <img src="{{ STATIC_URL }}img/loader.gif" />
+                </span>
+              </div>
+            apply
+            </button>
+
+          </div>
+      </form>
+    </div>
+  </div>

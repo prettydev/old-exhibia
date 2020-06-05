@@ -1,0 +1,40 @@
+{% load widget_tweaks %}
+{% load i18n static %}
+
+<div class="modal-dialog">
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h1 class="modal-title">Verify {{ verification_type }}</h1>
+      </div>
+
+      <form action="{{ form_action }}" class="validation" method="POST" id="user-verify-form">{% csrf_token %}
+
+        {% for field in form %}
+            <div class="form-group">
+                <label class="control-label field-label"
+                       for="{{ field.auto_id }}">{{ field.label }}</label>
+                {{ field|add_class:'form-control col-xs-12 col-sm-12 col-md-9 col-lg-9' }}
+                <label for="{{ field.auto_id }}" style="width: 185px; display: inline-block;" class="error"></label>
+                <div class="clearfix"></div>
+            </div>
+        {% endfor %}
+
+        <div class="btn-reg">
+            <div class="form-group mt-20">
+                <button type="button" id="user-verify" class="btn btn-info ajax-submit">
+                  <div class="item-loader">
+                    <span class="loader">
+                      <img src="{{ STATIC_URL }}img/loader.gif"/>
+                    </span>
+                  </div>
+                 {% trans 'Send verification' %}
+                </button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+    </form>
+
+    </div>
+  </div>

@@ -1,0 +1,9 @@
+{% extends "admin/django_base/change_form.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block submit_buttons_bottom %}
+    {% if perms.account.readonly_profile and not user.is_superuser %}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,117 @@
+  <div class="modal-dialog" id="modal_buy_shipping_{{ exhibit.id }}">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h1 class="modal-title" id="myModalLabel">buy shipping for won exhibit</h1>
+      </div>
+      <form role="form" target="_parent" id="buy-shipping-form" method="POST" action="{% url 'buy_shipping' %}">{% csrf_token %}
+        {{ form.exhibit }}
+        <div class="modal-body " style="padding: 0px;padding-bottom: 10px;">
+      <!-- form -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="block">
+                  <h6>{{ exhibit.item.name }}</h6>
+                </div>
+{#                <div class="form-group">#}
+{#                  <label for="address">Shipping Address</label>#}
+{#                  <div class="selectBox">#}
+{#                    <div class="selectBox-moreButton">#}
+{#                        <span class="caret"></span>#}
+{#                    </div>#}
+{#                    {{ form.shipping_address }}#}
+{#                  </div>#}
+{#                  <div class="address">#}
+{#                    <div class="item-link">#}
+{#                      <a href="{% url 'add_shipping_address'  %}">Add new address</a>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div><label for="{{ form.shipping_address.auto_id }}" class="error"></label></div>#}
+{#                  <div class="clearfix"></div>#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                  <label for="addr">Billing Address</label>#}
+{#                  <div class="selectBox">#}
+{#                    <div class="selectBox-moreButton">#}
+{#                        <span class="caret"></span>#}
+{#                    </div>#}
+{#                    {{ form.billing_address }}#}
+{#                  </div>#}
+{#                  <div class="item-link">#}
+{#                    <a href="{% url 'add_billing_address' %}">Add new address</a>#}
+{#                  </div>#}
+{#                  <div><label for="{{ form.billing_address.auto_id }}" class="error"></label></div>#}
+{#                  <div class="clearfix"></div>#}
+{#                </div>#}
+                <div class="form-group">
+                  <label for="addr">Payment system</label>
+                  {% for choice in form.payment_method %}
+                    <div class="radio">
+                      {{ choice }}
+                    </div>
+                  {% endfor %}
+                  <div><label for="{{ form.payment_method.auto_id }}" class="error"></label></div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="item-title">
+                  <h6>Shipping Method</h6>
+                </div>
+
+                <!-- radio-button shipping method -->
+                {% for choice in form.shipping_method %}
+                <div class="radio">
+                  {{ choice }}
+                </div>
+                {% endfor %}
+                <div><label for="{{ form.shipping_method.auto_id }}" class="error"></label></div>
+                <!-- end radio-button shipping method -->
+
+                <div class="order-info">
+                  {{ form.auction }}
+                  <div><label for="{{ form.auction.auto_id }}" class="error"></label></div>
+                  <div class="total-sum">
+                    Total: $<span id="buy-shipping-total-sum" >{{ exhibit.item.standard_shipping_price }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="">
+                  <div class="foto-pr ">
+                    <img class="img-responsive" src="{{ exhibit.item.image.url }}"/>
+                  </div>
+                  <div class="clearfix"></div>
+
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              </div>
+            <div class="clearfix"></div>
+      <!-- end form -->
+        </div>
+          <div class="modal-footer" style="padding: 14px 0px 10px">
+            <button type="button" id="buy-shipping" class="btn btn-info ajax-submit" data-ajax-disable="1">
+              <div class="item-loader">
+                <span class="loader">
+                  <img src="{{ STATIC_URL }}img/loader.gif"/>
+                </span>
+              </div>
+              Place Your Order
+            </button>
+            <button type="button" class="btn btn-black" data-dismiss="modal">Cancel</button>
+
+          </div>
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      $('#buy-shipping-form').on('change', 'input[name="shipping_method"]', function() {
+        // make it normal
+        var shipping_price = Number($(this).parent().text().replace(/[^0-9\.]+/g,""));
+        $('#shipping-price').text(shipping_price);
+        $('#buy-shipping-total-sum').text(shipping_price.toFixed(2));
+      })
+    });
+
+  </script>

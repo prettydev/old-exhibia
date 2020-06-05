@@ -1,0 +1,6 @@
+settings/local.py
+env/
+.idea
+*.pyc
+media
+logs/*

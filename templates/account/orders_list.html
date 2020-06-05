@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="content">
+     <div class="container w-1300">
+        <div class="row">
+           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="header">
+                 <h1>Your orders</h1>
+              </div>
+           </div>
+           <div class="clearfix"></div>
+        </div>
+        <div class="row" id="items">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="order-table row-1">
+                    <div class="table-responsive open-order">
+                        {% for exhibit in won_exhibits %}
+                            {% include 'account/won_exhibit.html' %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {# get user bids back #}
+                {% if  exhibits_with_bid_return %}
+                    <div class="header">
+                        <h2>Get your bids back!</h2>
+                    </div>
+                    <div class="order-table row-6">
+                        <div class="table-responsive open-order">
+                            {% for exhibit in exhibits_with_bid_return %}
+                                {% include 'account/exhibit_with_bids_return.html' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="header">
+                    <h2>Processing</h2>
+                </div>
+                <div class="order-table row-6">
+                    <div class="table-responsive open-order">
+                        {% for order in processing_payments %}
+                            {% include 'account/order_processing.html' %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+                <div class="header">
+                    <h2>Shipped items</h2>
+                </div>
+                <div class="order-table row-6">
+                    <div class="table-responsive open-order">
+                        {% for order in shipped_payments %}
+                            {% include 'account/order_shipped.html' %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- chat -->
+               <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pl-15">
+                  <div class="user-profile">
+                     <div class="panel-group" id="accordion">
+                        {% include 'account/profile_panel.html' %}
+                     </div>
+                  </div>
+               </div>
+               <!-- end chat -->
+               <div class="clearfix"></div>
+            </div>
+            <div class="row">
+               <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-11 col-lg-offset-1 col-lg-11">
+                  <div class="link-up">
+                     <a href="javascript:void(0)" id="go-up" style="display: inline;">
+                     <span class="glyphicon glyphicon-chevron-up"></span>Back To Top
+                     </a>
+                  </div>
+               </div>
+               <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

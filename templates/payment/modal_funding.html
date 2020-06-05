@@ -1,0 +1,224 @@
+<div class="modal fade" id="ModalFund" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1 class="modal-title" id="myModalLabel">fund items</h1>
+      </div>
+      <form role="form" target="_parent" action="{% url 'buy_bids' %}" method="POST" id="fund-exhibit-form">{% csrf_token %}
+        <div class="modal-body ">
+          <div class="row buy-bids-area">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <input type="hidden" name="exhibit_id" id="modal_funding_item" value="">
+              <div class="item-border">
+                <div class="radio">
+                  <label>
+                    <!--<input type="checkbox">-->
+                    <input type="radio" name="bids_cost" value="10">
+
+                    <div class="euro euro10"></div>
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td><span class="txt txt-red">10</span><br>Bids</td>
+                        <td><span class="glyphicon glyphicon-plus"></span></td>
+                        <td>No<br>bonus</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="bg bg-red">
+                      10<br>bids
+                    </div>
+                  </label>
+
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="item-border">
+                <div class="radio">
+                  <label>
+                    <!--<input type="checkbox">-->
+                    <input type="radio" name="bids_cost" value="20">
+
+                    <div class="euro euro20"></div>
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td><span class="txt txt-blue">20</span><br>Bids</td>
+                        <td><span class="glyphicon glyphicon-plus"></span></td>
+                        <td><span class="bonus">5%</span><br>bonus</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="bg bg-blue">
+                      22<br>bids
+                    </div>
+                  </label>
+
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="item-border">
+                <div class="radio">
+                  <label>
+                    <!--<input type="checkbox">-->
+                    <input type="radio" name="bids_cost" value="50">
+
+                    <div class="euro euro50"></div>
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td><span class="txt txt-orange">50</span><br>Bids</td>
+                        <td><span class="glyphicon glyphicon-plus"></span></td>
+                        <td><span class="bonus">10%</span><br>bonus</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="bg bg-orange">
+                      55<br>bids
+                    </div>
+                  </label>
+
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="item-border">
+                <div class="radio">
+                  <label>
+                    <!--<input type="checkbox">-->
+                    <input type="radio" name="bids_cost" value="100">
+
+                    <div class="euro euro100"></div>
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td><span class="txt txt-green">100</span><br>Bids</td>
+                        <td><span class="glyphicon glyphicon-plus"></span></td>
+                        <td><span class="bonus">12%</span><br>bonus</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="bg bg-green">
+                      112<br>bids
+                    </div>
+                  </label>
+
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="item-border">
+                <div class="radio">
+                  <label>
+                    <!--<input type="checkbox">-->
+                    <input type="radio" name="bids_cost" value="200">
+
+                    <div class="euro euro200"></div>
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td><span class="txt txt-yellow">200</span><br>Bids</td>
+                        <td><span class="glyphicon glyphicon-plus"></span></td>
+                        <td><span class="bonus">15%</span><br>bonus</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="bg bg-yel">
+                      230<br>bids
+                    </div>
+                  </label>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="item-border">
+                <div class="radio">
+                  <label>
+                    <!--<input type="checkbox">-->
+                    <input type="radio" name="bids_cost" value="500">
+
+                    <div class="euro euro500"></div>
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td><span class="txt txt-purple">500</span><br>Bids</td>
+                        <td><span class="glyphicon glyphicon-plus"></span></td>
+                        <td><span class="bonus">20%</span><br>bonus</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="bg bg-purple">
+                      600<br>bids
+                    </div>
+                  </label>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="pull-left" id="coupon_area">
+                <br/>
+                <div class="form-group">
+                  <label class="control-label field-label" for="coupon_code">I have coupon code:</label>
+                    <input id="coupon_code" type="text" name="coupon_code">
+                    <button type="button" class="btn check-coupon btn-info">
+                      <div class="item-loader">
+                        <span class="loader">
+                          <img src="{{ STATIC_URL }}img/loader.gif"/>
+                        </span>
+                      </div>
+                    apply</button>
+                    <label id="coupon_error_msg" for="id_coupon_code_hidden" class="error"></label>
+                    <input id="coupon_code_hidden" type="hidden" name="coupon_code_hidden">
+                </div>
+              </div>
+              <div class="pull-right">
+                <div class="total-price">
+                Total: $ <span id="total-price">0</span>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="form-group">
+                <div class="pull-left">
+                  <label class="control-label field-label" for="use_funding_credits">Use funding credits</label>
+                  <input id="use_funding_credits" type="checkbox" name="use_funding_credits">
+                </div>
+                <div class="pull-right">
+                  Funding credits: <span id="total-price">{{ user.funding_credits }}</span>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="row funding-credits-area" style="display: none;">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="form-group">
+                <label class="control-label field-label" for="funding_credits">Enter funding amount</label>
+                <input id="funding_credits" class="form-control" type="text" name="funding_credits">
+              </div>
+              <div class="clearfix"></div>
+                <label for="id_funding_credits" class="error"></label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-black" data-dismiss="modal">cancel</button>
+          <button type="button" id="fund-exhibit" class="btn btn-info ajax-submit"  data-ajax-disable="1">
+            <div class="item-loader">
+              <span class="loader">
+                <img src="{{ STATIC_URL }}img/loader.gif"/>
+              </span>
+            </div>
+            <span id="button-text" data-standart-text="buy bids" data-bonus-text="get bonus bids">buy bids</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

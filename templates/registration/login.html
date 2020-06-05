@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container auth-form">
+
+      <form role="form" method="POST">{% csrf_token %}
+
+        <div class="auth-form-header">
+
+          <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="bg-grey">
+                      <h1>Login with nickname</h1>
+                  </div>
+              </div>
+              <div class="clearfix"></div>
+          </div>
+        </div>
+
+
+        <div class="auth-form-body">
+
+
+          {% for field in form %}
+            <div class="form-group">
+              <label class="control-label field-label"
+                 for="{{ field.auto_id }}">{{ field.label }}</label>
+              {{ field }}
+              <label for="{{ form.username.auto_id }}" class="error" style="display: inline-block;">{{ field.errors.as_text }}</label>
+              <div class="clearfix"></div>
+            </div>
+          {% endfor %}
+
+          <div class="error" style="display: inline-block;">
+              {% if form.non_field_errors  %}
+                  {{ form.non_field_errors }}
+              {% endif %}
+          </div>
+
+          <div class="form-group mt-20 mb-30">
+              {% csrf_token %}
+              <input type="submit" class="btn btn-primary submit" value="Login" name="userRegistr">
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+{% endblock %}

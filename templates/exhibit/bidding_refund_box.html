@@ -1,0 +1,45 @@
+<div class="col-xs-6 col-sm-2 col-md-3 col-lg-2 w-193">
+    <div class="thumbnail">
+      <div class="item-foto">
+        <a class="itemLink" data-id="{{ exhibit.id }}"
+          style="background-image: url({{ exhibit.item.image.url }});
+           {% if exhibit.item.image.width > exhibit.item.image.height %}
+            background-size:100% auto ;
+           {% else %}
+            background-size: auto 100%;
+           {% endif %}
+          ">
+        </a>
+      </div>
+      <div class="item-name">
+        <a>{{ exhibit.item.name }}</a>
+      </div>
+      <div class="caption">
+        <div class="item-bid">
+          <table>
+            <tbody>
+              <tr>
+                <td><span class="color-blue start-message">Get your {{ exhibit.bid_refund }} bid(s) back</span></td>
+              </tr>
+              <tr>
+                <td><span class="color-blue">Time left:</span></td>
+              </tr>
+              <tr>
+                <td><span class="time bidding-refund-timer" data-timeleft="{{ exhibit.refund_time_left }}">-- : -- : --</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="item-buy">
+          <table>
+            <tr>
+              <td>Retail ${{ exhibit.item.price }}</td>
+              <td>
+                <button data-id="{{ exhibit.pk }}" class="btn btn-buy btn-buy-now pull-right">вuy</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>

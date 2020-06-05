@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+
+{% block javascripts_head %}
+
+    {# set value if it must look like mobile version(can't use here context processor) #}
+    <script type="text/javascript">
+          (function() {
+            window.MOBILE_VERSION = {{ mobile_version }};
+          })();
+    </script>
+
+    {{ block.super }}
+
+{#    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>#}
+    <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        new Ya.share({
+            l10n: 'en',
+            theme: 'counter',
+            element: 'ya_share1',
+            elementStyle: {
+                'type': 'none',
+                'border': true,
+                'quickServices': ['gplus', '|', 'twitter', '|', 'facebook']
+            },
+            link: 'http://www.exhibia.com/',
+            title: 'Exhibia - Competitive Social Shopping'
+        });
+    </script>
+
+{% endblock javascripts_head %}
+
+{% block content %}
+  <!-- section -->
+  <section class="content">
+    <div class="container w-1300">
+      <div class="row">
+        {% if user.is_superuser %}
+            <a href="javascript:;" class="pause-all-exhibits btn" data-action-url="{% url 'pause_all_exhibits' %}">Pause all</a>
+            <a href="javascript:;" class="pause-all-exhibits btn" data-action-url="{% url 'unpause_all_exhibits' %}">Unpause all</a>
+        {% endif %}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="header">
+            <h1>Last bidder wins!</h1>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="row" id="items">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+
+          <!--ONE BIDDDD ROW-->
+          <div class="listBidItems" id="bidding_exhibits">
+            {% for exhibit in bidding_exhibits %}
+              {% include bidding_exhibits_template %}
+            {% endfor %}
+            <div id="last_bidding"></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div class="header">
+                <h2>Funding exhibits</h2>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div class="header pull-right">
+                <h2>Get bids by funding items</h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- tab -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="item-tab">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                  {% for category in categories %}
+                    <li class="{% if forloop.first %}active{% endif %} hidden-xs">
+                      <a href="#{{ category.slug }}" class="append_funding_carousel" data-id='{{ category.id }}' data-slug='{{ category.slug }}' data-toggle="tab">{{ category.name }}</a>
+                    </li>
+                  {% endfor %}
+
+                  <li class="dropdown visible-xs pull-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories for funding <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                      {% for category in categories %}
+                      <li class="{% if forloop.first %}active{% endif %}">
+                        <a href="#{{ category.slug }}" class="append_funding_carousel" data-id='{{ category.id }}' data-slug='{{ category.slug }}' data-toggle="tab">{{ category.name }}</a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                </ul>
+                <!-- end nav tabs -->
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                  <a href="javascript:void(0)" class="prevCategory"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                  <a href="javascript:void(0)" class="nextCategory"><span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                  {% for category in categories %}
+                    <div class="tab-pane {% if forloop.first %}active{% endif %}" id="{{ category.slug }}">
+                      {% if forloop.first %}
+                        {% include 'exhibit/funding_carousel.html' with category_id=category.id %}
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+
+                </div>
+                <!-- end tab panes -->
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <!-- end tabs -->
+        </div>
+
+
+        <!-- chat -->
+        {% block chat %}
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pl-15">
+          <div class="user-profile">
+            <div class="panel-group" id="accordion">
+              {% if user.is_authenticated %}
+                {% include 'account/profile_panel.html' %}
+              {% else %}
+                {% include 'account/profile_panel_non_auth.html' %}
+              {% endif %}
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    {% if user.is_superuser %}
+                      <span class="green-circle"></span><span id="active-users-counter"></span> online
+                      <button id="toogle-guest-chat" data-chat-status={{ guest_chat_state }} class="btn btn-xs 
+                      {% if guest_chat_state == 1 %}
+                        btn-danger
+                      {% else %}
+                        btn-success
+                      {% endif %}
+                      "
+                      data-enable-message="Enable guest chat" data-disable-message="Disable guest chat" 
+                      data-action-url="{% url 'toogle-guest-chat' %}">
+                      {% if guest_chat_state == 1 %}
+                        Disable guest chat
+                      {% else %}
+                        Enable guest chat
+                      {% endif %}
+                      </button>
+                    {% else %}
+                      Chat
+                    {% endif %}
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="pull-right btn-accordion">
+                      <img src="{{ STATIC_URL }}img/btn-accordion.png" width="12" height="12"/>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse in" style="height: auto;">
+                  <div class="panel-body all-bidder">
+                    <ul class="list-unstyled chat-messages" id="chatMessages" style="height: 300px">
+                      {% for message in chat_messages %}
+                        {% if message.system %}
+                          <li>
+                            <div>
+                              <i class="icon-attention"></i>
+                              <span>{{ message.message }}</span>
+                            </div>
+                          </li>
+                        {% else %}
+                          <li>
+                            <div class="foto">
+                                <img src="{{ message.avatar }}"/>
+                            </div>
+                            <div class="description">
+                              <div class="user-description-box  author" >
+                                  <a href="#" data-user-id="{{ message.user_id }}" data-trigger="hover" data-container="body"
+                                  data-toggle="popover" data-html="true" data-placement="right" data-content="" class="popover-wrapper-foto">{{ message.username }}</a>
+                              </div>
+                              <div class="comment">{{ message.message }}</div>
+                            </div>
+                          <div class="clearfix"></div>
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                    <div id="im_resizer_wrap">
+                      <div class="im_resizer"></div>
+                      <div class="im_resizer"></div>
+                      <div class="im_resizer"></div>
+                    </div>
+                      <!--<li>-->
+                      <!--<div class="warning"><i class="icon-attention"></i> <span>Playstation 3 has opened for bidding</span></div>-->
+                      <!--</li>-->
+                      <ul class="list-unstyled">
+                          <li>
+                            {% if not user.profile.is_banned %}
+                              <textarea id="chat-msg" maxlength="100" class="form-control" rows="2" placeholder=""></textarea>
+                            {% endif %}
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="panel-footer">
+                    <div class="inner-content">
+{#                      <button type="btn" class="btn btn-like"><i class="icon-thumbs-up"></i><span>Like</span></button>#}
+{#                      <fb:like href="https://www.facebook.com/exhibia"  data-layout="button" data-action="like" data-show-faces="false" data-share="false"></fb:like>#}
+{#                      <g:plusone href="https://plus.google.com/+Exhibiashopping/posts" align="right"></g:plusone>#}
+                        <span id="ya_share1"></span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    How Exhibia Works?
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" class="pull-right btn-accordion">
+                      <img src="{{ STATIC_URL }}img/btn-accordion.png" width="12" height="12"/>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse in" style="height: auto;">
+                  <div class="panel-body" style="line-height: 0px;">
+                    <div>
+                      <iframe allowfullscreen width="100%" height="250px" src="https://www.youtube.com/embed/GVZl0_3iGtM">
+                      </iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end chat -->
+        <div class="clearfix"></div>
+        {% endblock chat %}
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-11 col-lg-offset-1 col-lg-11">
+          <div class="link-up">
+            <a href="javascript:void(0)" id="go-up" style="display: inline;">
+              <span class="glyphicon glyphicon-chevron-up"></span>Back To Top
+            </a>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+  </div>
+  </section>
+  <!-- end section -->
+{% endblock content %}

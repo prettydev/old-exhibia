@@ -1,0 +1,54 @@
+<div class="col-xs-6 col-sm-2 col-md-3 col-lg-2 mini" id="bidding_{{ exhibit.id }}">
+{#    __TIMER_DROP_TOOL__#}
+    <!-- /.action additional class to item -->
+    <div class="item mini">
+      <div class="itemName">
+        <div class="itemVertical">
+          {{ exhibit.item.name }}
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <div class="itemImg">
+        <a class="itemLink append-item-page" data-pk="{{ exhibit.item.pk }}"
+           style="background-image: url({{ exhibit.item.image.url }});
+           {% if exhibit.item.image.width > exhibit.item.image.height %}
+            background-size:100% auto ;
+           {% else %}
+            background-size: auto 100%;
+           {% endif %}
+          ">
+        </a>
+      </div>
+      <div class="itemInfo">
+        <!--<div class="item-timer">timer: <span>120 sec</span></div>-->
+        <div class="itemTable">
+          <div class="itemTimer">
+            <div id="bidding_winner_{{ exhibit.id }}" class="time" style="display:none;">Winner!</div>
+            <div id="bidding_timer_{{ exhibit.id }}" class="time bidding-timer" style="display:none;">59:59</div>
+            <div id="bidding_start_msg_{{ exhibit.id }}" class="color-blue start-message">Be the first bidder</div>
+          </div>
+        </div>
+        <div class="itemBid">
+          <div class="itemBidInner">
+            <div class="itemBidPlace">
+              <div class="itemLastBidUser popover-wrapper-foto"  id="bidding_wrapper_foto_{{ exhibit.id }}" style="display: none;"
+                data-trigger="hover" data-container="body" data-toggle="popover" data-html="true" data-placement="left" data-content="" data-user-id="{{ exhibit.last_bidder_member.id }}">
+                <div class="wrapper-foto">
+                  <img class="item-bidder-foto"  style="transform: skewY(0deg) scale(1, 1);" id="bidding_foto_{{ exhibit.id }}" src="{{ MEDIA_URL }}{{ exhibit.last_bidder_member.avatar }}">
+                </div>
+              </div>
+              __BID_BUTTON__
+              <div class="itemPrice">
+                Retail ${{ exhibit.item.price|stringformat:"d" }}
+              </div>
+              <div class="itemBuy">
+                <button data-item_pk="{{ exhibit.item.pk }}" class="itemBuyBtn btn-buy btn-buy-now">Buy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+</div>

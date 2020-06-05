@@ -1,0 +1,8 @@
+<div class="pull-right">
+    <select class="timer_drop_tool" data-id="{{ exhibit.id }}">
+        <option>Timer</option>
+        {% for value, label in exhibit.NEW_BIDDING_TIME_CHOICES %}
+            <option value="{{ value }}">{{ label }}</option>
+        {% endfor %}
+    </select>
+</div>

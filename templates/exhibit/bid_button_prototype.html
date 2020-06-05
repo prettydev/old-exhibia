@@ -1,0 +1,12 @@
+<h6 align="center" id="bidding_locked_message_{{ exhibit_id }}" style="display: none;">Locked</h6>
+{% if params.not_logged %}
+  <button type="button" onclick="$('#ModalSignIn').modal('show');" class="btn btn-pink">bid</button>
+{% elif params.bid_allowed %}
+  <button id="bidding_button_{{ exhibit_id }}" type="button" class="btn btn-pink bid-btn" data-exhibitid="{{ exhibit_id }}">bid</button>
+{% else %}
+  {% if params.newbie %}
+    <h6 align="center">Newbie</h6>
+  {% else %}
+    <button id="bidding_button_{{ exhibit_id }}" type="button" class="btn btn-pink bid-btn disabled" data-exhibitid="{{ exhibit_id }}">bid</button>
+  {% endif %}
+{% endif %}

@@ -1,0 +1,39 @@
+<table class="table">
+   <thead>
+      <tr class="active">
+         <th class="col-first">
+            <div class="top-header">Lost Item</div>
+            {{ exhibit.won_date|date:"F d, Y" }}
+         </th>
+         <th class="col-second"></th>
+         <th></th>
+         <th></th>
+         <th></th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td class="col-first">
+            <div class="wrap-foto">
+               <a href="" class="itemFoto" style="background-image: url({{ exhibit.item.image.url }}); background-size: auto 100%;"></a>
+            </div>
+         </td>
+         <td class="col-second">
+            <div class="table-header">
+               {{ exhibit.item.name }}
+            </div>
+         </td>
+         <td></td>
+         <td></td>
+         <td>
+            <div>
+                <span class="color-blue">Time left:</span>
+                <span class="time bidding-refund-timer" data-timeleft="{{ exhibit.refund_time_left }}">-- : -- : --</span>
+            </div>
+            <div>
+                <button data-exhibit_id="{{ exhibit.id }}" class="btn red btn-return-bids">Buy and get {{ exhibit.bid_refund }} bid(s) back</button>
+            </div>
+         </td>
+      </tr>
+   </tbody>
+</table>

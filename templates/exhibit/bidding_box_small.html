@@ -1,0 +1,59 @@
+{% load exhibit_tags %}
+<div class="col-xs-6 col-sm-2 col-md-3 col-lg-2 mini" id="bidding_{{ exhibit.id }}">
+    {% if user.is_superuser and 0 %}
+        {% include 'exhibit/timer_drop_tool.html' %}
+    {% endif %}
+    <!-- /.action additional class to item -->
+    <div class="item mini">
+      <div class="itemName">
+        <div class="itemVertical">
+          {{ exhibit.item.name }}
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <div class="itemImg">
+        <a class="itemLink append-item-page" data-pk="{{ exhibit.item.pk }}"
+           style="background-image: url({{ exhibit.item.image.url }});
+           {% if exhibit.item.image.width > exhibit.item.image.height %}
+            background-size:100% auto ;
+           {% else %}
+            background-size: auto 100%;
+           {% endif %}
+          ">
+        </a>
+      </div>
+      <div class="itemInfo">
+        <!--<div class="item-timer">timer: <span>120 sec</span></div>-->
+        <div class="itemTable">
+          <div class="itemTimer">
+            <div id="bidding_winner_{{ exhibit.id }}" class="time" style="{% if not exhibit.in_after_win_pause %}display:none;{% endif %}">Winner!</div>
+            <div id="bidding_timer_{{ exhibit.id }}" class="time bidding-timer" style="{% if not exhibit.ended_unixtime or exhibit.in_after_win_pause %}display:none;{% endif %}">59:59</div>
+            {% if not exhibit.ended_unixtime %}
+              <div id="bidding_start_msg_{{ exhibit.id }}" class="color-blue start-message">Be the first bidder</div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="itemBid">
+          <div class="itemBidInner">
+            <div class="itemBidPlace">
+              <div class="itemLastBidUser popover-wrapper-foto"  id="bidding_wrapper_foto_{{ exhibit.id }}" {% if not exhibit.ended_unixtime %}style="display: none;"{% endif %}
+                data-trigger="hover" data-container="body" data-toggle="popover" data-html="true" data-placement="left" data-content="" data-user-id="{{ exhibit.last_bidder_member.id }}">
+                <div class="wrapper-foto">
+                  <img class="item-bidder-foto"  style="transform: skewY(0deg) scale(1, 1);" id="bidding_foto_{{ exhibit.id }}" src="{{ MEDIA_URL }}{{ exhibit.last_bidder_member.avatar }}">
+                </div>
+              </div>
+              {% bid_button exhibit %}
+              <div class="itemPrice">
+                Retail ${{ exhibit.item.price|stringformat:"d" }}
+              </div>
+              <div class="itemBuy">
+                <button data-item_pk="{{ exhibit.item.pk }}" class="itemBuyBtn btn-buy btn-buy-now">Buy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+</div>

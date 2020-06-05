@@ -1,0 +1,5 @@
+{% if is_authenticated %}
+  <button data-toggle="modal" data-target="#ModalFund" class="btn fund btn-info" data-pk="{{ exhibit_id }}"> fund</button>
+{% else %}
+  <button class="btn fund btn-info" onclick="$('#ModalSignIn').modal('show');" data-pk="{{ exhibit_id }}"> fund</button>
+{% endif %}

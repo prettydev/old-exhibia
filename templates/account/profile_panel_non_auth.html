@@ -1,0 +1,26 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      My Profile
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+         class="pull-right btn-accordion">
+        <img src="{{ STATIC_URL }}img/btn-accordion.png" width="12" height="12"/>
+      </a>
+    </h4>
+  </div>
+  <div id="collapseOne" class="panel-collapse collapse in" style="height: auto;">
+    <div class="panel-body">
+      <div class="alert alert-info">
+        All bidders are Facebook or Google verified.
+      </div>
+      <div class="start-b">start <span class="txt-grey">bidding</span></div>
+      <div class="text-center img-fb">
+        <img src="{{ STATIC_URL }}img/img-fb.png"/>
+      </div>
+      <div class="text-center btn-connect">
+        <a target="_parent" class="btn btn-primary" href="{% url 'social:begin' 'facebook' %}">connect with
+          <span>facebook</span></a>
+      </div>
+    </div>
+  </div>
+</div>

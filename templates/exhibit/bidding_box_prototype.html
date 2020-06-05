@@ -1,0 +1,58 @@
+<div class="col-xs-6 col-sm-2 col-md-3 col-lg-2 w-193" id="bidding_{{ exhibit.id }}" style="display: none;">
+    <div class="thumbnail">
+      <div class="item-foto">
+        <a class="itemLink btn-buy-now" data-item_pk="{{ exhibit.item.pk }}"
+          style="background-image: url({{ exhibit.item.image.url }});
+           {% if exhibit.item.image.width > exhibit.item.image.height %}
+            background-size:100% auto ;
+           {% else %}
+            background-size: auto 100%;
+           {% endif %}
+          ">
+        </a>
+      </div>
+      <div class="item-name">
+        <a>{{ exhibit.item.name }}</a>
+      </div>
+      <div class="caption">
+        <div class="item-bid">
+          <table>
+            <tbody>
+              <tr>
+                <td colspan="2">
+                    <div class="wrapper-foto  popover-wrapper-foto" id="bidding_wrapper_foto_{{ exhibit.id }}" style="display:none;" data-trigger="hover" data-container="body" data-toggle="popover" data-html="true" data-placement="right" data-content="">
+                        <img class="item-bidder-foto" src="" id="bidding_foto_{{ exhibit.id }}" data-user-id="">
+                    </div>
+                    <div class="item-last-bidder" id="bidding_name_{{ exhibit.id }}"></div>
+                    __TIMER_DROP_TOOL__
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2"><div class="item-timer">timer: <span>{{ exhibit.bidding_time }} sec</span></div></td>
+              </tr>
+              <tr>
+                <td>
+                    <div id="bidding_winner_{{ exhibit.id }}" class="time" style="display:none;">Winner!</div>
+                    <div id="bidding_timer_{{ exhibit.id }}" class="time bidding-timer" style="display:none;">-- : --</div>
+                    <div id="bidding_start_msg_{{ exhibit.id }}" class="color-blue start-message">Be the first bidder</div>
+                </td>
+                <td>
+                    __BID_BUTTON__
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="item-buy">
+          <table>
+            <tr>
+              <td>Retail ${{ exhibit.item.price }}</td>
+              <td>
+                <button data-item_pk="{{ exhibit.item.pk }}" class="btn btn-buy btn-buy-now pull-right">вuy</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
